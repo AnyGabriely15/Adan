@@ -10,8 +10,7 @@
 <body>
     <?php
     include('nav.php');
-    if(isset($_POST['submit']))
-    {
+    if(isset($_POST['submit'])){
        require("conecta.php");
 
 
@@ -79,8 +78,10 @@
                 <input type="submit" name="submit" id="submit" value="Cadastrar" class="btn-cadastrar">
                 <br><br>
                 <button type="button" onclick="window.location.href='login.php'" class="btn-voltar">Voltar</button>
+                
+            </div>
             </fieldset>
         </form>
-    </div>
+
 </body>
 </html>

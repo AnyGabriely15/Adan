@@ -1,3 +1,12 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redefinir Senha</title>
+</head>
+<body>
+
 <?php
 include("nav.php");
 include("conecta.php");
@@ -10,24 +19,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $res = mysqli_query($conexao, $sql);
 
             if ($res) {                    
-                echo "Senha atualizada com sucesso!"; 
-            } else {
-                echo "Erro ao atualizar senha: " . mysqli_error($conexao);  
-            }
+            echo "<div class='alert_message success'><p>Senha atualizada com sucesso!</p></div>";
+                
+            header('Refresh: 3; URL=login.php');     
+         
+         } else {
+              $erro = mysqli_error($conexao);
+                echo "<div class='alert_message error'><p>Erro ao atualizar senha: $erro!</p></div>";
+         }  
+    
 
       mysqli_close($conexao);  
      }  
       
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redefinir Senha</title>
-</head>
-<body>
 <div class="box">
     <form action="alterarSenha.php" method="post"> 
         <fieldset>
@@ -38,21 +44,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <label for="email" class="labelInput">Email:</label>
                     <br>
                     <input type="text" name="email" id="email" 
-                    maxlength="30" 
+                    maxlength="50" 
                     required>   
                     <br>
                 </div>
                 <br>
-        <div class="inputBox">
-        <br>
-        <label class="labelInput" for="nova_senha">Nova Senha:</label>
-        <br>
-        <input type="password" id="nova_senha" name="nova_senha" maxlength="8"  required><br><br>
-        <br>
-        <input type="submit" class="btn-cadastrar" value="Redefinir Senha">
-        <br><br>
-        <button type="button" onclick="window.location.href='login.php'" class="btn-voltar">Voltar</button>
-
-    </form>
+                <div class="inputBox">
+                <br>
+                <label class="labelInput" for="nova_senha">Nova Senha:</label>
+                <br>
+                <input type="password" id="nova_senha" name="nova_senha" maxlength="8"  required><br><br>
+                <br>
+                <input type="submit" class="btn-cadastrar" value="Redefinir Senha">
+                <br><br>
+                <button type="button" onclick="window.location.href='login.php'" class="btn-voltar">Voltar</button>
+                </div>
+            </form>        
+     </fieldset>
 </body>
 </html>
